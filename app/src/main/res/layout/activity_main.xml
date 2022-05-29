@@ -66,10 +66,42 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="510dp"
         android:fontFamily="@font/cantarell"
         android:text="@string/welcome3"
-        android:textColor="@color/black"
-        android:layout_marginTop="510dp"
+        android:textColor="@color/black" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="120dp"
+        android:background="@color/blue"
+        android:fontFamily="@font/cantarell"
+        android:text="          SIGN UP          " />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp"
+        android:text="Already a Member?"
+        android:fontFamily="@font/cantarell"
         android:layout_centerHorizontal="true"/>
 
+    <Button
+        android:id="@+id/button_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:fontFamily="@font/cantarell"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/royalblue"
+        android:layout_marginBottom="40dp"
+        android:textAllCaps="false"
+        android:onClick="sendMessage"
+        style="?android:attr/borderlessButtonStyle" />
 </RelativeLayout>
