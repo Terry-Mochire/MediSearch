@@ -40,6 +40,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="420dp"
         android:text="Welcome to Medi-Search"
+        android:fontFamily="@font/cantarell"
+        android:textColor="@color/royalblue"
         android:textSize="28sp"
         android:textStyle="bold"/>
 
@@ -48,19 +50,25 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome1"
         android:layout_marginTop="470dp"
+        android:fontFamily="@font/cantarell"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome2"
+        android:fontFamily="@font/cantarell"
+        android:textColor="@color/black"
         android:layout_marginTop="490dp"
         android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cantarell"
         android:text="@string/welcome3"
+        android:textColor="@color/black"
         android:layout_marginTop="510dp"
         android:layout_centerHorizontal="true"/>
 
