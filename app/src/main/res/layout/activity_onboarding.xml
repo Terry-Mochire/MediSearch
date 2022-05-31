@@ -21,4 +21,63 @@
         android:textColor="@color/royalblue"
         android:textSize="17sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/onboardingHeader"
+        android:fontFamily="@font/cantarell"
+        android:textSize="20sp"
+        android:textColor="@color/royalblue"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="70dp"/>
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/userName"
+        android:background="@color/white"
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="120dp"
+        android:paddingLeft="20dp"
+        android:hint="Name"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/userEmail"
+        android:background="@color/white"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="120dp"
+        android:paddingLeft="20dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/userPassword"
+        android:background="@color/white"
+        android:layout_marginTop="370dp"
+        android:layout_marginLeft="120dp"
+        android:paddingLeft="20dp"
+        android:hint="Password"
+        android:inputType="numberPassword"
+        android:fontFamilyHint="@font/cairo"
+        />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/userConfirmPassword"
+        android:background="@color/white"
+        android:layout_marginTop="460dp"
+        android:layout_marginLeft="120dp"
+        android:paddingLeft="20dp"
+        android:hint="Confirm Password"
+        android:inputType="numberPassword"
+        />
+
 </RelativeLayout>
