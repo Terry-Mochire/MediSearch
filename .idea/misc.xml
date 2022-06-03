@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/backgound_splash.xml" value="0.2005" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.15232273838630808" />
       </map>
     </option>
   </component>

@@ -16,6 +16,7 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
 
     @BindView(R.id.signUp) Button mSignUp;
     @BindView(R.id.userName) EditText mUserName;
+    @BindView(R.id.directToSignIn) Button mdirectToSignIn;
 
 
     @Override
@@ -25,12 +26,20 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
         ButterKnife.bind(this);
         Intent intent = getIntent();
         mSignUp.setOnClickListener(this);
+        mdirectToSignIn.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        String userName = mUserName.getText().toString();
-        Toast.makeText(OnboardingActivity.this, "Welcome to Medi-Search " + userName, Toast.LENGTH_LONG).show();
+       if (v == mSignUp ) {
+           String userName = mUserName.getText().toString();
+           Toast.makeText(OnboardingActivity.this, "Welcome to Medi-Search " + userName, Toast.LENGTH_LONG).show();
+       }
+
+       if (v == mdirectToSignIn) {
+           Intent intent = new Intent(OnboardingActivity.this, SignInActivity.class);
+           startActivity(intent);
+       }
     }
 }
