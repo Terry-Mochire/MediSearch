@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.homeSignUp) Button mHomeSignUp;
+    @BindView(R.id.homeSignIn) Button mHomeSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +21,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mHomeSignUp.setOnClickListener(this);
+        mHomeSignIn.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
-        startActivity(intent);
+       if ( v == mHomeSignUp){
+           Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
+           startActivity(intent);
+       }
+
+       if ( v == mHomeSignIn) {
+           Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+           startActivity(intent);
+       }
     }
 }
