@@ -38,6 +38,8 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
            String userName = mUserName.getText().toString();
            Toast.makeText(OnboardingActivity.this, "Welcome to Medi-Search " + userName, Toast.LENGTH_LONG).show();
            Intent intent = new Intent(OnboardingActivity.this, StartAssessmentActivity.class);
+
+           intent.putExtra("userName", userName);
            startActivity(intent);
        }
 
