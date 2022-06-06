@@ -1,4 +1,4 @@
-package com.example.medi_search;
+package com.example.medi_search.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

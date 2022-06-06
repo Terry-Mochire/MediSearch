@@ -1,4 +1,4 @@
-package com.example.medi_search;
+package com.example.medi_search.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.medi_search.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
