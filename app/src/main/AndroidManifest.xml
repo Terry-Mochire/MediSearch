@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MediSearch"
         tools:targetApi="31">
         <activity
-            android:name=".StartAssessmentActivity"
+            android:name=".ui.StartAssessmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SignInActivity"

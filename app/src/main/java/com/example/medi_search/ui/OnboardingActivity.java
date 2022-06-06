@@ -37,6 +37,8 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
        if (v == mSignUp ) {
            String userName = mUserName.getText().toString();
            Toast.makeText(OnboardingActivity.this, "Welcome to Medi-Search " + userName, Toast.LENGTH_LONG).show();
+           Intent intent = new Intent(OnboardingActivity.this, StartAssessmentActivity.class);
+           startActivity(intent);
        }
 
        if (v == mdirectToSignIn) {

@@ -6,5 +6,5 @@
     <string name="onboardingHeader">Create Your Account</string>
     <string name="helloUsername">Hello User,</string>
     <string name="startAssessment">Welcome to Medi-Search. I can help you learn more about your health.</string>
-    <string name="featured">Featured</string>
+    <string name="featured">Read Our Featured Articles</string>
 </resources>
