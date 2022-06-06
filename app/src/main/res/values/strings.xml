@@ -4,4 +4,6 @@
     <string name="welcome2">Check your symptoms now.</string>
     <string name="welcome3">Fast, Accurate, Confidential.</string>
     <string name="onboardingHeader">Create Your Account</string>
+    <string name="helloUsername">Hello User,</string>
+    <string name="startAssessment">Welcome to Medi-Search. I can help you learn more about your health.</string>
 </resources>
