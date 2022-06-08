@@ -23,8 +23,8 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'API_KEY', InfermedicaApiKey
-        it.buildConfigField 'String', 'API_ID', infermedicaApiId
+        it.buildConfigField 'String', 'API_KEY', API_KEY
+        it.buildConfigField 'String', 'API_ID', API_ID
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,4 +43,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.5.0")
 }
