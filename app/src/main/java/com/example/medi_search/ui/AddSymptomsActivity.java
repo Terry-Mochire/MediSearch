@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.medi_search.R;
 import com.example.medi_search.models.Symptom;
@@ -22,9 +25,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddSymptomsActivity extends AppCompatActivity {
+public class AddSymptomsActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.addSymptom)  AutoCompleteTextView mAddSymptom;
+    @BindView(R.id.submitButton) Button msubmitButton;
+    @BindView(R.id.addedSymptom) TextView selectedSymptom;
     public List<Symptom> allSymptoms;
 
 
@@ -53,6 +58,8 @@ public class AddSymptomsActivity extends AppCompatActivity {
                 mAddSymptom.setThreshold(1);
                 mAddSymptom.setAdapter(arrayAdapter);
 
+                msubmitButton.setOnClickListener(AddSymptomsActivity.this);
+
             }
 
             @Override
@@ -61,5 +68,14 @@ public class AddSymptomsActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if( v == msubmitButton) {
+            String text = mAddSymptom.getText().toString();
+            selectedSymptom.setText(text);
+            selectedSymptom.setVisibility(View.VISIBLE);
+        }
     }
 }

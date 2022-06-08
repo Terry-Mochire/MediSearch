@@ -26,4 +26,25 @@
         android:src="@drawable/scribbling"
         android:layout_alignParentBottom="true"/>
 
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="190dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:background="@color/lightPurple"
+        android:text="Add Symptom"
+        android:fontFamily="@font/cairo"
+        android:textAllCaps="false"/>
+
+    <TextView
+        android:id="@+id/addedSymptom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Added Symptom"
+        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
 </RelativeLayout>
