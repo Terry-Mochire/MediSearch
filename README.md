@@ -8,11 +8,28 @@ Independent project to apply principles taught in the Moringa Android(Java) prog
 ### Author's Information
 Terry Mochire, June 2022.
 
+## Setup Informartion
+
+#### Prerequisites
+* Basic Git knowledge, including an installed version of Git.
+* Your application must run on the OpenJDK version 6, 7 or 8.
+
 ### Technologies Used
 1. Android Studio
 2. Java
 3. Gradle
 4. XML
+5. Retrofit
+6. Robolectric
+7. Espresso
+
+To run the application, in your terminal:
+
+
+    1. Clone or download the Repository
+    2. cd into directory then run `cd StudentSytem`
+    3. Rebuild the Project Using Android Studio
+    
 
 ---
 
