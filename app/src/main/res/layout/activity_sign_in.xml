@@ -52,10 +52,20 @@
         android:background="@color/blue"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="200dp"
         android:textColor="@color/white"
         android:text="Sign In"
         android:textAllCaps="false"
         />
+    <TextView
+        android:id="@+id/askToRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Sign up here!"
+        android:textColor="@color/royalblue"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="160dp"
+        android:layout_centerHorizontal="true"/>
+
 
 </RelativeLayout>
