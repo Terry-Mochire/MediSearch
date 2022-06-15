@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.medi_search.R;
@@ -17,6 +18,7 @@ import com.example.medi_search.network.Api;
 import com.example.medi_search.network.ApiClient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,6 +32,7 @@ public class AddSymptomsActivity extends AppCompatActivity implements View.OnCli
     @BindView(R.id.addSymptom)  AutoCompleteTextView mAddSymptom;
     @BindView(R.id.submitButton) Button msubmitButton;
     @BindView(R.id.addedSymptom) TextView selectedSymptom;
+    @BindView(R.id.gender_spinner) Spinner mGenderSpinner;
     public List<Symptom> allSymptoms;
 
 
@@ -40,6 +43,11 @@ public class AddSymptomsActivity extends AppCompatActivity implements View.OnCli
 
         ButterKnife.bind(this);
         Intent intent = getIntent();
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mGenderSpinner.setAdapter(adapter);
+
         Api client = ApiClient.getClient();
         Call<List<Symptom>> call = client.getSymptoms(25);
 

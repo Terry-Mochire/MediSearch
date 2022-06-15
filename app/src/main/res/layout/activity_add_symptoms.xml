@@ -2,12 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="Gender"
+        android:textColor="@color/royalblue"
+        android:textSize="18sp"
+        android:layout_marginLeft="33dp"/>
 
     <Spinner
         android:id="@+id/gender_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="33dp"
+        android:layout_marginLeft="33dp"
+        />
 
     <EditText
         android:layout_width="match_parent"
@@ -16,13 +27,14 @@
         android:layout_marginRight="33dp"
         android:layout_marginLeft="33dp"
         android:hint="Age"
+        android:textColorHint="@color/royalblue"
         android:inputType="number"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="33dp"
         android:layout_marginTop="280dp"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textColor="@color/royalblue"
         android:text="Choose Symptoms"
         />
@@ -45,11 +57,11 @@
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="370dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp"
         android:background="@color/lightPurple"
-        android:text="Add Symptom"
+        android:text="Submit Details"
         android:fontFamily="@font/cairo"
         android:textAllCaps="false"/>
 

@@ -7,4 +7,10 @@
     <string name="helloUsername">Hello User,</string>
     <string name="startAssessment">Welcome to Medi-Search. I can help you learn more about your health.</string>
     <string name="featured">Read Our Featured Articles</string>
+
+    <string-array name="gender">
+        <item> --- </item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
