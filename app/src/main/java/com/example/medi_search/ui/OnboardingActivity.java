@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,13 +63,7 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
        if (v == mSignUp ) {
            createNewUser();
-           String username = mUserName.getText().toString();
-           addToSharedPreferences(username);
-           Toast.makeText(OnboardingActivity.this, "Welcome to Medi-Search " + username, Toast.LENGTH_LONG).show();
-           Intent intent = new Intent(OnboardingActivity.this, StartAssessmentActivity.class);
 
-
-           startActivity(intent);
        }
 
        if (v == mdirectToSignIn) {
@@ -89,6 +84,14 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
         String password = mUserPassword.getText().toString().trim();
         String confirmPassword = mUserConfirmPassword.getText().toString().trim();
 
+        boolean validEmail = isValidEmail(email);
+        boolean validName = isValidName(name);
+        boolean validPassword = isValidPassword(password, confirmPassword);
+        if (!validEmail || !validName || !validPassword) return;
+
+        String username = mUserName.getText().toString();
+        addToSharedPreferences(username);
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -98,6 +101,10 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                         Toast.makeText(OnboardingActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        Toast.makeText(OnboardingActivity.this, "Welcome to Medi-Search " + username, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(OnboardingActivity.this, StartAssessmentActivity.class);
+        startActivity(intent);
     }
 
     private void createFirebaseUserProfile(final FirebaseUser user) {
@@ -118,5 +125,33 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                         }
                     }
                 });
+    }
+
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail = (email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mUserEmail.setError("Please enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+    }
+
+    private boolean isValidName(String name) {
+        if (name.equals("")) {
+            mUserName.setError("Please enter your name");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidPassword(String password, String confirmPassword) {
+        if (password.length() < 6) {
+           mUserPassword.setError("Please create a password containing at least 6 characters");
+            return false;
+        } else if (!password.equals(confirmPassword)) {
+            mUserPassword.setError("Passwords do not match");
+            return false;
+        }
+        return true;
     }
 }
