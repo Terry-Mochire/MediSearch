@@ -9,7 +9,7 @@
         android:id="@+id/logo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
         app:srcCompat="@drawable/logo1" />
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/cantarell"
         android:text="@string/helloUsername"
         android:textColor="@color/black"
@@ -27,8 +27,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="140dp"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="110dp"
         android:fontFamily="@font/cantarell"
         android:text="@string/startAssessment"
         android:textColor="@color/black"
