@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,6 +16,7 @@ import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.medi_search.Constants;
 import com.example.medi_search.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,6 +32,8 @@ public class StartAssessmentActivity extends AppCompatActivity implements View.O
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private SharedPreferences mSharedPreferences;
+    private String mUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +42,17 @@ public class StartAssessmentActivity extends AppCompatActivity implements View.O
         Intent intent = getIntent();
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mUserName = mSharedPreferences.getString(Constants.PREFERENCES_USERNAME_KEY, null);
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    String userName = user.getDisplayName();
-                    mhelloUser.setText("Hello " + userName);
-                   Log.i("Username", userName);
+                    mhelloUser.setText("Hello " + mUserName);
+                   Log.i("Username", mUserName);
                 } else {
 
                 }
