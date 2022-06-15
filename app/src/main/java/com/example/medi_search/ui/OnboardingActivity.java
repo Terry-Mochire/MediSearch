@@ -1,5 +1,6 @@
 package com.example.medi_search.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,7 +12,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.medi_search.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +32,8 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.userConfirmPassword) EditText mUserConfirmPassword;
     @BindView(R.id.directToSignIn) Button mdirectToSignIn;
 
+    private String mName;
+
     private FirebaseAuth mAuth;
     public static final String TAG = OnboardingActivity.class.getSimpleName();
     @Override
@@ -34,6 +43,7 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
         ButterKnife.bind(this);
         Intent intent = getIntent();
 
+        mName = mUserName.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
 
         mSignUp.setOnClickListener(this);
@@ -71,8 +81,26 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Authentication is successful!");
+                        createFirebaseUserProfile(Objects.requireNonNull(task.getResult().getUser()));
                     } else {
                         Toast.makeText(OnboardingActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void createFirebaseUserProfile(final FirebaseUser user) {
+        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                .setDisplayName(mName)
+                .build();
+
+        user.updateProfile(addProfileName)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, Objects.requireNonNull(user.getDisplayName()));
+                            Toast.makeText(OnboardingActivity.this, "The display name has ben set", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }

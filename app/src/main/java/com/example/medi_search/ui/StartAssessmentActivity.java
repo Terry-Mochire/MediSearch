@@ -1,5 +1,6 @@
 package com.example.medi_search.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,18 +23,49 @@ public class StartAssessmentActivity extends AppCompatActivity implements View.O
     @BindView(R.id.helloUser) TextView mhelloUser;
     @BindView(R.id.StartAssessment) Button mStartAssessment;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_assessment);
         Intent intent = getIntent();
         ButterKnife.bind(this);
-//        String userName = intent.getStringExtra("userName");
-//        mhelloUser.setText("Hello " + userName);
-//        Log.i("Username", userName);
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    String userName = user.getDisplayName();
+                    mhelloUser.setText("Hello " + userName);
+                   Log.i("Username", userName);
+                } else {
+
+                }
+            }
+        };
+
 
         mStartAssessment.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
     @Override
