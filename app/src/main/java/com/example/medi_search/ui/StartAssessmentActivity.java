@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.medi_search.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,9 +28,9 @@ public class StartAssessmentActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_start_assessment);
         Intent intent = getIntent();
         ButterKnife.bind(this);
-        String userName = intent.getStringExtra("userName");
-        mhelloUser.setText("Hello " + userName);
-        Log.i("Username", userName);
+//        String userName = intent.getStringExtra("userName");
+//        mhelloUser.setText("Hello " + userName);
+//        Log.i("Username", userName);
 
         mStartAssessment.setOnClickListener(this);
 
