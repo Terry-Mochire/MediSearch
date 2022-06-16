@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.medi_search.Constants;
 import com.example.medi_search.R;
@@ -86,6 +87,7 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
                     @Override
                     public void onClick(View v) {
                         if( v == msubmitButton) {
+                            Toast.makeText(AddSymptomsActivity.this, "Symptoms added", Toast.LENGTH_SHORT).show();
                             String text = mAddSymptom.getText().toString();
                             gender = mSharedPreferences.getString(Constants.PREFERENCES_USERGENDER_KEY, null);
 
