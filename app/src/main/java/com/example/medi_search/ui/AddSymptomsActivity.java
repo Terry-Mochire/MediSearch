@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -18,7 +19,6 @@ import com.example.medi_search.network.Api;
 import com.example.medi_search.network.ApiClient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddSymptomsActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddSymptomsActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.addSymptom)  AutoCompleteTextView mAddSymptom;
     @BindView(R.id.submitButton) Button msubmitButton;
@@ -47,6 +47,7 @@ public class AddSymptomsActivity extends AppCompatActivity implements View.OnCli
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mGenderSpinner.setAdapter(adapter);
+        mGenderSpinner.setOnItemSelectedListener(this);
 
         Api client = ApiClient.getClient();
         Call<List<Symptom>> call = client.getSymptoms(25);
@@ -65,8 +66,20 @@ public class AddSymptomsActivity extends AppCompatActivity implements View.OnCli
                 ArrayAdapter arrayAdapter = new ArrayAdapter(AddSymptomsActivity.this, android.R.layout.select_dialog_item,listOfSymptomNames );
                 mAddSymptom.setThreshold(1);
                 mAddSymptom.setAdapter(arrayAdapter);
+                msubmitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if( v == msubmitButton) {
+                            String text = mAddSymptom.getText().toString();
+                            selectedSymptom.setText(text);
+                            selectedSymptom.setVisibility(View.VISIBLE);
 
-                msubmitButton.setOnClickListener(AddSymptomsActivity.this);
+                            int index = listOfSymptomNames.indexOf(mAddSymptom.getText().toString());
+                            String symptomId = allSymptoms.get(index).getId();
+                            Log.d("Symptom id", symptomId);
+                        }
+                    }
+                });
 
             }
 
@@ -78,12 +91,20 @@ public class AddSymptomsActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+
     @Override
-    public void onClick(View v) {
-        if( v == msubmitButton) {
-            String text = mAddSymptom.getText().toString();
-            selectedSymptom.setText(text);
-            selectedSymptom.setVisibility(View.VISIBLE);
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent == mGenderSpinner) {
+        long gender =  parent.getItemIdAtPosition(position);
+            parent.getPositionForView(view);
+
+            Log.d("gender", String.valueOf(gender));
         }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
