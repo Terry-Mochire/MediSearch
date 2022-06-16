@@ -3,7 +3,9 @@ package com.example.medi_search.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,12 +15,17 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.medi_search.Constants;
 import com.example.medi_search.R;
+import com.example.medi_search.models.Patient;
 import com.example.medi_search.models.Symptom;
 import com.example.medi_search.network.Api;
 import com.example.medi_search.network.ApiClient;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,8 +40,14 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
     @BindView(R.id.submitButton) Button msubmitButton;
     @BindView(R.id.addedSymptom) TextView selectedSymptom;
     @BindView(R.id.gender_spinner) Spinner mGenderSpinner;
-    public List<Symptom> allSymptoms;
 
+    public List<Symptom> allSymptoms;
+    public Object gender;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
+
+    private Patient mPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +61,9 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mGenderSpinner.setAdapter(adapter);
         mGenderSpinner.setOnItemSelectedListener(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         Api client = ApiClient.getClient();
         Call<List<Symptom>> call = client.getSymptoms(25);
@@ -71,12 +87,17 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
                     public void onClick(View v) {
                         if( v == msubmitButton) {
                             String text = mAddSymptom.getText().toString();
-                            selectedSymptom.setText(text);
-                            selectedSymptom.setVisibility(View.VISIBLE);
+                            gender = mSharedPreferences.getString(Constants.PREFERENCES_USERGENDER_KEY, null);
 
                             int index = listOfSymptomNames.indexOf(mAddSymptom.getText().toString());
                             String symptomId = allSymptoms.get(index).getId();
                             Log.d("Symptom id", symptomId);
+
+                            mPatient = new Patient(String.valueOf(gender), 22, Collections.singletonList(text));
+                            DatabaseReference restaurantRef = FirebaseDatabase
+                                    .getInstance()
+                                    .getReference(Constants.FIREBASE_CHILD_PATIENT);
+                            restaurantRef.push().setValue(mPatient);
                         }
                     }
                 });
@@ -95,16 +116,21 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent == mGenderSpinner) {
-        long gender =  parent.getItemIdAtPosition(position);
-            parent.getPositionForView(view);
-
+        Object gender =  parent.getItemAtPosition(position);
+            addToSharedPreferences(gender);
             Log.d("gender", String.valueOf(gender));
         }
 
+    }
+
+    private void addToSharedPreferences(Object gender) {
+        mEditor.putString(Constants.PREFERENCES_USERGENDER_KEY, (String) gender).apply();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }
