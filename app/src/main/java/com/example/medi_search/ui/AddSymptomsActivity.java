@@ -22,6 +22,8 @@ import com.example.medi_search.models.Patient;
 import com.example.medi_search.models.Symptom;
 import com.example.medi_search.network.Api;
 import com.example.medi_search.network.ApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -87,6 +89,10 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
                     @Override
                     public void onClick(View v) {
                         if( v == msubmitButton) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            String uid = user.getUid();
+
+
                             Toast.makeText(AddSymptomsActivity.this, "Symptoms added", Toast.LENGTH_SHORT).show();
                             String text = mAddSymptom.getText().toString();
                             gender = mSharedPreferences.getString(Constants.PREFERENCES_USERGENDER_KEY, null);
@@ -96,10 +102,14 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
                             Log.d("Symptom id", symptomId);
 
                             mPatient = new Patient(String.valueOf(gender), 22, Collections.singletonList(text));
-                            DatabaseReference restaurantRef = FirebaseDatabase
+                            DatabaseReference patientRef = FirebaseDatabase
                                     .getInstance()
-                                    .getReference(Constants.FIREBASE_CHILD_PATIENT);
-                            restaurantRef.push().setValue(mPatient);
+                                    .getReference(Constants.FIREBASE_CHILD_PATIENT)
+                                    .child(uid);
+                            DatabaseReference pushRef = patientRef.push();
+                            String pushId = pushRef.getKey();
+                            mPatient.setPushId(pushId);
+                            pushRef.setValue(mPatient);
                         }
                     }
                 });

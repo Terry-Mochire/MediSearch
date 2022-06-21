@@ -19,6 +19,8 @@ public class Patient<Age, Evidence> {
     @Expose
     private List<Evidence> evidence = null;
 
+    private String pushId;
+
     /**
      * No args constructor for use in serialization
      * 
@@ -61,6 +63,14 @@ public class Patient<Age, Evidence> {
 
     public void setEvidence(List<Evidence> evidence) {
         this.evidence = evidence;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 
 }
