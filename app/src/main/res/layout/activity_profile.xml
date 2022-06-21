@@ -52,6 +52,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/firebaseEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email Address"
@@ -60,6 +61,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="50dp"/>
         <TextView
+            android:id="@+id/firebaseGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gender"
@@ -68,6 +70,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="30dp"/>
         <TextView
+            android:id="@+id/firebaseSymptoms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Symptoms"
@@ -77,9 +80,10 @@
             android:layout_marginTop="30dp"/>
 
         <TextView
+            android:id="@+id/Diagnosis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email Address"
+            android:text="Diagnosis"
             android:fontFamily="@font/cantarell"
             android:textSize="20sp"
             android:layout_marginLeft="40dp"
