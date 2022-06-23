@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.medi_search.Constants;
@@ -28,6 +29,8 @@ public class StartAssessmentActivity extends AppCompatActivity implements View.O
 
     @BindView(R.id.helloUser) TextView mhelloUser;
     @BindView(R.id.StartAssessment) Button mStartAssessment;
+    @BindView(R.id.profile_image)
+    ImageView mProfile;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -61,6 +64,7 @@ public class StartAssessmentActivity extends AppCompatActivity implements View.O
 
 
         mStartAssessment.setOnClickListener(this);
+        mProfile.setOnClickListener(this);
 
     }
 
@@ -80,8 +84,15 @@ public class StartAssessmentActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View v) {
-        Intent startIntent = new Intent(StartAssessmentActivity.this, AddSymptomsActivity.class);
-        startActivity(startIntent);
+        if (v == mStartAssessment) {
+            Intent startIntent = new Intent(StartAssessmentActivity.this, AddSymptomsActivity.class);
+            startActivity(startIntent);
+        }
+
+        if (v == mProfile) {
+            Intent startIntent = new Intent(StartAssessmentActivity.this, ProfileActivity.class);
+            startActivity(startIntent);
+        }
     }
 
     @Override
