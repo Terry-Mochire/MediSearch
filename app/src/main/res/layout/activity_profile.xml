@@ -23,13 +23,12 @@
             android:id="@+id/fullname_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:layout_below="@id/profile_image"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
             android:fontFamily="@font/cantarell"
             android:includeFontPadding="false"
             android:text="Taimoor Sikander"
-            android:layout_centerHorizontal="true"
             android:textColor="#000"
             android:textSize="20sp" />
 

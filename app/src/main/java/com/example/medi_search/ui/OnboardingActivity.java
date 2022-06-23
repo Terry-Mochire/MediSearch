@@ -77,6 +77,9 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
     private void addToSharedPreferences(String username) {
         mEditor.putString(Constants.PREFERENCES_USERNAME_KEY, username).apply();
     }
+    private void addEmailToPreferences(String useremail) {
+        mEditor.putString(Constants.PREFERENCES_USEREMAIL_KEY, useremail).apply();
+    }
 
     private void createNewUser() {
         final String name = mUserName.getText().toString().trim();
@@ -90,7 +93,9 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
         if (!validEmail || !validName || !validPassword) return;
 
         String username = mUserName.getText().toString();
+        String userEmail = mUserEmail.getText().toString().trim();
         addToSharedPreferences(username);
+        addEmailToPreferences(userEmail);
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {

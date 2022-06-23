@@ -7,4 +7,6 @@ public class Constants {
     public static final String PREFERENCES_USERNAME_KEY = "username";
     public static final String PREFERENCES_USERGENDER_KEY = "usergender";
     public static final String FIREBASE_CHILD_PATIENT = "patients";
+    public static final String PREFERENCES_USEREMAIL_KEY = "email";
+    public static final String PREFERENCES_USERSYMPTOM_KEY = "symptom";
 }

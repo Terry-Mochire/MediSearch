@@ -98,6 +98,8 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
                             gender = mSharedPreferences.getString(Constants.PREFERENCES_USERGENDER_KEY, null);
 
                             int index = listOfSymptomNames.indexOf(mAddSymptom.getText().toString());
+                            String symptomName = allSymptoms.get(index).getCommonName();
+                            addToSharedPreferencesSymptoms(symptomName);
                             String symptomId = allSymptoms.get(index).getId();
                             Log.d("Symptom id", symptomId);
 
@@ -110,6 +112,10 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
                             String pushId = pushRef.getKey();
                             mPatient.setPushId(pushId);
                             pushRef.setValue(mPatient);
+
+
+                            Intent intent1 = new Intent(AddSymptomsActivity.this, ProfileActivity.class);
+                            startActivity(intent1);
                         }
                     }
                 });
@@ -122,6 +128,10 @@ public class AddSymptomsActivity extends AppCompatActivity  implements AdapterVi
             }
 
         });
+    }
+
+    private void addToSharedPreferencesSymptoms(String symptomName) {
+        mEditor.putString(Constants.PREFERENCES_USERSYMPTOM_KEY, (String) symptomName).apply();
     }
 
 
